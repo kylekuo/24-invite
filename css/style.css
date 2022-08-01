@@ -109,10 +109,15 @@ h1{
 
 #age{
   position: relative;
-  font-size: 600px;
   height: .8em;
   max-height: 70vh;
+  font-size: 600px;
   filter: blur(2px);
+  opacity: 0;
+  transition: opacity 1s ease-in;
+}
+#age.animate{
+  opacity: 1;
 }
 
 #age > * {
@@ -132,7 +137,7 @@ h1{
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-fill-mode: forwards;
-  animation-play-state: running;
+  animation-play-state: paused;
 
   mix-blend-mode: lighten;
 
@@ -155,11 +160,14 @@ h1{
 
   font-variation-settings: 'wdth' 150, 'wght' 800;
   letter-spacing: -.1em;
-  opacity: 0;
 
-  will-change: transform, font-variation-settings, letter-spacing, opacity;
+  will-change: transform, font-variation-settings, letter-spacing;
 
   z-index: 1;
+}
+
+#age.animate .layer{
+  animation-play-state: running;
 }
 
 @keyframes frames {
@@ -169,12 +177,7 @@ h1{
     --wght: 800; */
     font-variation-settings: 'wdth' 150, 'wght' 800;
     letter-spacing: -.1em;
-    opacity: 0;
   }
-
-  10%, 90% { opacity: .1; }
-
-  33%, 66% { opacity: 1; }
   
   100% {
     /* ROBOTO */
@@ -182,7 +185,6 @@ h1{
     --wght: 300; */
     font-variation-settings: 'wdth' 75, 'wght' 300;
     letter-spacing: -.015em;
-    opacity: 0;
   }
 }
 

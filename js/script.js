@@ -31,13 +31,14 @@ import * as doc from './LoadEvents.js';
 });
 
 const html = document.querySelector('html');
+let age;
 
 doc.ready().then(() => {
 
   html.classList.add('ready');
-  
-  const age = document.querySelector('#age'),
-        ageNumber = '24',
+  age = document.querySelector('#age');
+
+  const ageNumber = '24',
         colors = [
           '--kk-red',
           '--kk-yellow',
@@ -60,4 +61,5 @@ doc.ready().then(() => {
 
 doc.loaded().then(() => {
   html.classList.add('loaded');
+  age.classList.add('animate');
 });
