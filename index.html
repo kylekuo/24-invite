@@ -209,11 +209,12 @@
       color: var(--kk-black);
 
       --stroke-width: 2px;
+      --stroke-blur: 4px;
       text-shadow:
-        calc(-1 * var(--stroke-width)) calc(-1 * var(--stroke-width)) 0 var(--color),  
-        calc(+1 * var(--stroke-width)) calc(-1 * var(--stroke-width)) 0 var(--color),
-        calc(-1 * var(--stroke-width)) calc(+1 * var(--stroke-width)) 0 var(--color),
-        calc(+1 * var(--stroke-width)) calc(+1 * var(--stroke-width)) 0 var(--color);
+        calc(-1 * var(--stroke-width)) calc(-1 * var(--stroke-width)) var(--stroke-blur) var(--color),  
+        calc(+1 * var(--stroke-width)) calc(-1 * var(--stroke-width)) var(--stroke-blur) var(--color),
+        calc(-1 * var(--stroke-width)) calc(+1 * var(--stroke-width)) var(--stroke-blur) var(--color),
+        calc(+1 * var(--stroke-width)) calc(+1 * var(--stroke-width)) var(--stroke-blur) var(--color);
 
       --wdth: 150;
       --wght: 800;
@@ -282,7 +283,7 @@
       pointer-events: none;
       z-index: 999;
 
-      background-image: url('../img/noise-overlay-200.png');
+      background-image: url('./img/noise-overlay-200.png');
       background-size: 200px;
       animation: flip .5s steps(1) infinite;
     }
