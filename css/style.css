@@ -1,0 +1,225 @@
+@import url('../roboto/roboto.css');
+
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+:root{
+  --kk-black: hsl(210deg, 90%, 5%);
+  --kk-white: hsl(30deg, 25%, 95%);
+  --kk-red: rgb(255, 0, 0);
+  --kk-yellow: rgb(255, 255, 0);
+  --kk-green: rgb(0, 255, 0);
+  --kk-cyan: rgb(0, 255, 255);
+  --kk-blue: rgb(0, 0, 255);
+  --kk-pink: rgb(255, 0, 255);
+}
+
+html, body{
+  height: 100%;
+  max-height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  padding: 40px 0;
+
+  background-color: var(--kk-black);
+  color: var(--kk-white);
+
+  font-family: 'Roboto Flex';
+  --slnt: 0;   /* wdth: -10 - 0 */
+  --wdth: 50;   /* wdth: 25 - 150 */
+  --wght: 100;  /* wght: 100 - 1000 */
+}
+
+body > *{
+  margin: 0;
+
+  opacity: 0;
+  transition: opacity .15s ease-out;
+}
+
+html.loaded body > *{
+  opacity: 1;
+}
+
+body *{
+  font-style: unset !important;
+  font-weight: unset !important;
+  font-variation-settings: 
+    'slnt' var(--slnt),
+    'wdth' var(--wdth),
+    'wght' var(--wght),
+    'SPAC' 500;
+}
+
+#info{
+  --wdth: 100;
+  --wght: 300;
+  color: inherit;
+  line-height: 1.6em;
+  text-align: center;
+  text-transform: uppercase;
+  text-underline-offset: 2px;
+  text-shadow: 
+    -1px -1px 2px var(--kk-black),
+    +1px -1px 2px var(--kk-black),
+    -1px +1px 2px var(--kk-black),
+    +1px +1px 2px var(--kk-black);
+  z-index: 1;
+}
+
+#art{
+  position: relative;
+  pointer-events: none;
+}
+
+h1{
+  --wdth: 100;
+  --wght: 800;
+
+  width: 600px;
+  max-width: 95vw;
+  font-size: .8em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-align: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  text-shadow: 
+    -1px -1px 2px var(--kk-black),
+    +1px -1px 2px var(--kk-black),
+    -1px +1px 2px var(--kk-black),
+    +1px +1px 2px var(--kk-black);
+
+  z-index: 10;
+}
+
+#age{
+  position: relative;
+  font-size: 600px;
+  height: .8em;
+  max-height: 70vh;
+  filter: blur(2px);
+}
+
+#age > * {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center;
+}
+
+#age .layer{
+  --index: 0;
+
+  animation-name: frames;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-delay: calc(.1s + (var(--index) * .075s));
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+
+  mix-blend-mode: lighten;
+
+  /* ROBOTO FLEX */
+  margin-bottom: -0.025em;
+  letter-spacing: -.1em;
+  font-variation-settings: 
+    'wdth' var(--wdth),
+    'wght' var(--wght);
+
+  color: var(--kk-black);
+
+  --stroke-width: 2px;
+  --stroke-blur: 0;
+  text-shadow:
+    calc(-1 * var(--stroke-width)) calc(-1 * var(--stroke-width)) var(--stroke-blur) var(--color),  
+    calc(+1 * var(--stroke-width)) calc(-1 * var(--stroke-width)) var(--stroke-blur) var(--color),
+    calc(-1 * var(--stroke-width)) calc(+1 * var(--stroke-width)) var(--stroke-blur) var(--color),
+    calc(+1 * var(--stroke-width)) calc(+1 * var(--stroke-width)) var(--stroke-blur) var(--color);
+
+  font-variation-settings: 'wdth' 150, 'wght' 800;
+  letter-spacing: -.1em;
+  opacity: 0;
+
+  will-change: transform, font-variation-settings, letter-spacing, opacity;
+
+  z-index: 1;
+}
+
+@keyframes frames {
+  0% {
+    /* ROBOTO */
+    /* --wdth: 150;
+    --wght: 800; */
+    font-variation-settings: 'wdth' 150, 'wght' 800;
+    letter-spacing: -.1em;
+    opacity: 0;
+  }
+
+  10%, 90% { opacity: .1; }
+
+  33%, 66% { opacity: 1; }
+  
+  100% {
+    /* ROBOTO */
+    /* --wdth: 75;
+    --wght: 300; */
+    font-variation-settings: 'wdth' 75, 'wght' 300;
+    letter-spacing: -.015em;
+    opacity: 0;
+  }
+}
+
+/* NOISE OVERLAY */
+
+#noise-overlay{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  
+  mix-blend-mode: multiply;
+  opacity: .25;
+  
+  pointer-events: none;
+  z-index: 999;
+
+  background-image: url('../img/noise-overlay.png');
+  background-size: 100px;
+  animation: flip .5s steps(1) infinite;
+}
+
+@keyframes flip{
+  0% {
+    transform: scaleX(1) scaleY(1);
+  }
+  25% {
+    transform: scaleX(1) scaleY(-1);
+  }
+  50% {
+    transform: scaleX(-1) scaleY(-1);
+  }
+  75% {
+    transform: scaleX(-1) scaleY(1);
+  }
+  100% {
+    transform: scaleX(-1) scaleY(1);
+  }
+}
