@@ -133,7 +133,7 @@ h1{
   animation-name: frames;
   animation-duration: 4s;
   animation-timing-function: ease-in-out;
-  animation-delay: calc(.1s + (var(--index) * .075s));
+  animation-delay: calc(.1s + (var(--index) * .5s));
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-fill-mode: forwards;
