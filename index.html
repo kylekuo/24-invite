@@ -49,42 +49,37 @@
         inherits: false,
         initialValue: 100,
       },
-    ].forEach(prop => window.CSS.registerProperty(prop));
+    ].forEach(prop => {
+      if (window.CSS.registerProperty) window.CSS.registerProperty(prop)
+    });
 
     document.addEventListener('DOMContentLoaded', evt => {
       
       const age = document.querySelector('#age'),
-            ageNumber = '24';
-
-      const colors = [
-        '--kk-red',
-        '--kk-yellow',
-        '--kk-green',
-        '--kk-cyan',
-        '--kk-blue',
-        '--kk-pink'
-      ];
+            ageNumber = '24',
+            colors = [
+              '--kk-red',
+              '--kk-yellow',
+              '--kk-green',
+              '--kk-cyan',
+              '--kk-blue',
+              '--kk-pink'
+            ];
 
       for (const [index, color] of colors.entries()) {
-
-        console.log(index, color)
-
         const layer = document.createElement('div');
         layer.classList.add('layer');
         layer.style.setProperty('--color', `var(${color})`);
         layer.style.setProperty('--index', index);
         layer.innerText = ageNumber;
-
         age.insertAdjacentElement('beforeend', layer);
       }
-
 
     });
   </script>
 
   <style>
     @import url('./roboto/roboto.css');
-    @import url('./publica.css');
 
     *, *::before, *::after{
       box-sizing: border-box;
@@ -229,11 +224,8 @@
     }
 
     @keyframes frames {
-      
       0% {
         /* ROBOTO */
-        /* --wdth: 150;
-        --wght: 1000; */
         --wdth: 150;
         --wght: 800;
         letter-spacing: -.1em;
@@ -247,13 +239,31 @@
       
       100% {
         /* ROBOTO */
-        /* --wdth: 25;
-        --wght: 100; */
         --wdth: 75;
         --wght: 300;
         letter-spacing: -.015em;
 
         opacity: 0;
+      }
+    }
+
+    @supports (-moz-appearance: none) {
+      @keyframes frames {
+        0% {
+          font-variation-settings: 'wdth' 150, 'wght' 800;
+          letter-spacing: -.1em;
+          opacity: 0;
+        }
+
+        10%, 90% { opacity: .1; }
+
+        33%, 66% { opacity: 1; }
+        
+        100% {
+          font-variation-settings: 'wdth' 75, 'wght' 300;
+          letter-spacing: -.015em;
+          opacity: 0;
+        }
       }
     }
 
